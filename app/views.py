@@ -8,6 +8,8 @@ import os
 from app import app
 from flask import render_template, request, redirect, url_for, flash, session, abort, send_from_directory
 from .forms import ContactForm
+from app import mail
+from flask_mail import Message
 
 
 ###
@@ -26,8 +28,8 @@ def about():
     return render_template('about.html', name="Mary Jane")
 
 
-@app.route('/form/', methods = ['GET', 'POST'])
-def form():
+@app.route('/contact/', methods = ['GET', 'POST'])
+def contact():
     cform = ContactForm()
     
     if request.method == 'POST':
@@ -35,12 +37,18 @@ def form():
             firstname = cform.firstname.data
             lastname = cform.lastname.data
             email = cform.email.data
+            subject = cform.subject.data
+            message = cform.message.data
 
+            msg = Message(subject , sender=(firstname, lastname, email), recipients=["to@example.com"])
+            msg.body = message
+            mail.send(msg)
+            
             flash("Form submission successful", "Successful")
-            return render_template('result.html', firstname=firstname, lastname=lastname, email=email)
-        
-        flash_errors(cform)
-    return render_template('contact.html', form=cform)
+            return redirect(url_for('home'))
+        else:    
+            flash_errors(cform)
+    return render_template('contact.html', contact=cform)
 
 
 
