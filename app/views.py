@@ -4,9 +4,10 @@ Jinja2 Documentation:    http://jinja.pocoo.org/2/documentation/
 Werkzeug Documentation:  http://werkzeug.pocoo.org/documentation/
 This file creates your application.
 """
-
+import os
 from app import app
-from flask import render_template, request, redirect, url_for, flash
+from flask import render_template, request, redirect, url_for, flash, session, abort, send_from_directory
+from .forms import ContactForm
 
 
 ###
@@ -23,6 +24,29 @@ def home():
 def about():
     """Render the website's about page."""
     return render_template('about.html', name="Mary Jane")
+
+
+@app.route('/form/', methods = ['GET', 'POST'])
+def form():
+    cform = ContactForm()
+    
+    if request.method == 'POST':
+        if cform.validate_on_submit():
+            firstname = cform.firstname.data
+            lastname = cform.lastname.data
+            email = cform.email.data
+
+            flash("Form submission successful", "Successful")
+            return render_template('result.html', firstname=firstname, lastname=lastname, email=email)
+        
+        flash_errors(cform)
+    return render_template('contact.html', form=cform)
+
+
+
+
+
+
 
 
 ###

@@ -1,0 +1,25 @@
+
+{% extends 'base.html' %}
+
+{% block main %}
+    <h2>Flask Form</h2>
+
+    <form action="{{ url_for('form') }}" method="post">
+        {% include 'flash_messages.html' %}
+        {{ form.csrf_token }}
+        <div class="form-group">
+            <label for="firstname">First Name</label>
+            <input type="text" class="form-control" name="firstname" id="firstname" />
+        </div>
+        <div class="form-group">
+            <label for="lastname">Last Name</label>
+            <input type="text" class="form-control" name="lastname" id="lastname" />
+        </div>
+        <div class="form-group">
+            <label for="email">E-mail</label>
+            <input type="email" class="form-control" name="email" id="email" placeholder="davgriff@example.com" />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+{% endblock %}
