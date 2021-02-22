@@ -25,7 +25,7 @@ def home():
 @app.route('/about/')
 def about():
     """Render the website's about page."""
-    return render_template('about.html', name="Mary Jane")
+    return render_template('about.html', name="David Griffiths")
 
 
 @app.route('/contact/', methods = ['GET', 'POST'])
@@ -34,20 +34,19 @@ def contact():
     
     if request.method == 'POST':
         if cform.validate_on_submit():
-            firstname = cform.firstname.data
-            lastname = cform.lastname.data
+            name = cform.name.data
             email = cform.email.data
             subject = cform.subject.data
             message = cform.message.data
 
-            msg = Message(subject , sender=(firstname, lastname, email), recipients=["to@example.com"])
+            msg = Message(subject , sender=(name, email), recipients=["to@example.com"])
             msg.body = message
             mail.send(msg)
             
             flash("Form submission successful", "Successful")
             return redirect(url_for('home'))
-        else:    
-            flash_errors(cform)
+   
+        flash_errors(cform)
     return render_template('contact.html', contact=cform)
 
 

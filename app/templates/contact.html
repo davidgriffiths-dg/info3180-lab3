@@ -8,24 +8,20 @@
         {% include 'flash_messages.html' %}
         {{ contact.csrf_token }}
         <div class="form-group">
-            <label for="firstname">First Name <span class = "rq" >(Required)</span></label>
-            <input type="text" class="form-control" name="firstname" id="firstname" />
+            <label for="name">Name <span class = "rq" >(Required)</span><p>Please enter your full name</p></label>
+            <input type="text" class="form-control" name="name" id="name" />
         </div>
         <div class="form-group">
-            <label for="lastname">Last Name <span class = "rq" >(Required)</span></label>
-            <input type="text" class="form-control" name="lastname" id="lastname" />
-        </div>
-        <div class="form-group">
-            <label for="email">E-mail <span class = "rq" >(Required)</span></label>
+            <label for="email">E-mail <span class = "rq" >(Required)</span><p>Please enter your email address</p></label>
             <input type="email" class="form-control" name="email" id="email" placeholder="davgriff@example.com" />
         </div>
         <div class="form-group">
-            <label for="subject">Subject <span class = "rq" >(Required)</span></label>
+            <label for="subject">Subject <span class = "rq" >(Required)</span><p>Please enter a subject for your message</p></label>
             <input type="text" class="form-control" name="subject" id="subject" placeholder="Type a short subject" />
         </div>
 
         <div class="form-group">
-            <label for="message">Message <span class = "rq" >(Required)</span></label>
+            <label for="message">Message <span class = "rq" >(Required)</span><p>Please enter your message</p></label>
             <textarea  class="form-control" name="message" id="message" placeholder="Leave a message" ></textarea>
         </div>
 

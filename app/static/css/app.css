@@ -2,10 +2,7 @@ body {
     padding-top: 5rem;
 }
 
-.rq{
-    color: red;
 
-}
 
 textarea{
     height: 150px;
@@ -13,4 +10,19 @@ textarea{
 
 .form-control{
     width: 500px;
+
+}
+
+label{
+    font-weight: bold;
+}
+
+.rq{
+    color: red;
+    font-weight: normal;
+
+}
+
+p{
+    font-weight: normal;
 }
